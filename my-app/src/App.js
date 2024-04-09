@@ -1,24 +1,34 @@
 import './App.css';
+import {useState} from "react";
+//Whenever a value is changing it triggers a reminder and shows the new valuein our ui.
 
 function App() {
-  
+
+const [count,setCount]=useState(0);
+
+const increase=()=>{
+  setCount(count+1);
+}
+
+const decrease=()=>{
+  setCount(count-1);
+}
+const setToZero=()=>{
+  setCount(0);
+}
+
+
   return (
     <div className="App">
-
-<User name="shiva" age={20} gmail="Shiva@gmail.com"/>
-<User name="shiva" age={20} gmail="Shiva@gmail.com"/>
-<User name="shiva" age={20} gmail="Shiva@gmail.com"/>
-      
+    <button onClick={increase}>Increase number</button>
+    <button onClick={decrease}>decrease number</button>
+    <button onClick={setToZero}>SetToZero</button>
+{count}
     </div>
+    
   );
 }
-const User=(props)=>{
-  return(
-    <div>
-      <h1>{props.name}</h1>
-      <h1>{props.age}</h1>
-      <h1>{props.gmail}</h1>
-    </div>
-  )
-}
+
+
+
 export default App;
