@@ -1,30 +1,24 @@
 import './App.css';
 import React from "react";
-import Axios from "axios";
-import {useState} from "react";
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
+import {Home} from "./components/Home"; 
+import {Menu} from "./components/Menu"; 
+import {Contact} from "./components/Contact"; 
+import Navbar from "./Navbar";
 function App() {
-const [genExcuse,setExcuse]=useState("");
-const FetchExcuse=(excuse)=>{
-  Axios.get(`https://excuser-three.vercel.app/v1/excuse/${excuse}/`).then(
-    (res)=>{
-      setExcuse(res.data[0].excuse);
-    }
-  )
-}
-
 return (
     <div className="App">
-<button onClick={()=>FetchExcuse("family")}>Family</button>
-<button onClick={()=>FetchExcuse("office")}>Office</button>
-<button onClick={()=>FetchExcuse("party")}>Party</button>
-<p>{genExcuse}</p>
+<Router>
+  <Navbar/>
+  <Routes>
+    <Route path="/" element={<Home/>}/>
+    <Route path="/menu" element={<Menu/>}/>
+    <Route path="/contact" element={<Contact/>}/>
+    <Route path="*" element={<h1>Error 404</h1>}/> 
+  </Routes>
+</Router>
 
     </div>
   );
 }
-
-
-
-
-
-export default App;
+export default App; 
