@@ -1,12 +1,14 @@
 import "./App.css";
-import React from 'react'
-import {Form} from "./components/Form";
-const App = () => {
-  return (
-    <div className="App">
-      <Form/>
-    </div>
-  )
-}
+import {useApi} from "./components/useApi";
 
-export default App
+
+const App = () => {
+const {loading,data}=useApi("https://jsonplaceholder.typicode.com/users")
+if(loading) return <h1>Loading</h1>
+return <div>
+  <h1>Data fetched successfully</h1>
+  {JSON.stringify(data)}
+</div>
+ 
+}
+export default App;
